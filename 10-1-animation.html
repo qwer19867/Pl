@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>10-1 CSS 动画</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			min-height: 100vh;
+			margin: 0;
+			display: grid;
+			place-items: center;
+			background: #f1f4f2;
+			font-family: "Microsoft YaHei", sans-serif;
+		}
+		.box {
+			width: min(280px, calc(100vw - 40px));
+			aspect-ratio: 1.15;
+			display: grid;
+			place-items: center;
+			border-radius: 24px;
+			color: #fff;
+			font-size: 28px;
+			font-weight: 700;
+			box-shadow: 0 22px 50px rgba(27, 42, 37, 0.2);
+			animation: color-cycle 8s linear infinite,
+					   float-and-turn 4s ease-in-out infinite;
+		}
+		@keyframes color-cycle {
+			0%, 100% { background-color: #e85d75; }
+			25% { background-color: #e99a45; }
+			50% { background-color: #39a88b; }
+			75% { background-color: #477cc2; }
+		}
+		@keyframes float-and-turn {
+			0%, 100% { transform: translateY(0) rotate(-3deg); }
+			50% { transform: translateY(-16px) rotate(3deg); }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			.box { animation: none; background-color: #39a88b; }
+		}
+	</style>
+</head>
+<body>
+	<div class="box">庞磊</div>
+</body>
+</html>

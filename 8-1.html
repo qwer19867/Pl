@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            background-color: #f2f3f4;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        .box{
+            width:150px;
+            height:150px;
+            border: 10px solid white;
+            font-size:14px;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            transition: all 0.5s;
+            box-sizing: border-box;
+        }
+        .box:first-child:hover{
+            background-color: #000;
+            color:#fff;
+            font-size: 100px;
+        }
+        .box:nth-child(2):hover{
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+        }
+        .box:nth-child(3):hover{
+            text-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+        }
+        .box:nth-of-type(4):hover{
+            border-radius: 50%;
+        }
+        .box:nth-of-type(5):hover{
+            background: linear-gradient(45deg,red,yellow,blue);
+        }
+        .box:nth-of-type(6):hover{
+            background:radial-gradient(#fff,#000)
+        }
+        .box:nth-of-type(6)+.box:hover{
+            transform: scale(1.5);
+        }
+        .box:nth-of-type(8):hover{
+            transform: translateX(150px);
+        }
+        .box:nth-of-type(9):hover{
+            transform:rotateZ(-180deg);
+        }
+        .box:nth-of-type(10):hover{
+            transform: skewX(-45deg);
+        }
+        .box:nth-child(11):hover::before{
+            content:"#";
+            color:red;
+        }
+        .box:nth-child(12):hover::after{
+            content:"#";
+            color:blue;
+            font-size: 6px;
+            display: block;
+            width:40px;
+            height:40px;
+            margin:10px;
+        }
+        .box:nth-of-type(3n):hover{
+            border:3px solid red;
+
+        }
+    </style>
+    <style>
+        .main .box:nth-child(13){
+            position: relative;
+            font-size: 0;
+            color: transparent;
+            background-color: #fff;
+            border-radius: 12px;
+            transition: transform 0.35s ease, background-color 0.35s ease,
+                color 0.35s ease, border-radius 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .main .box:nth-child(13)::after{
+            content: "13";
+            color: #111;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .main .box:nth-child(13):hover{
+            background-color: #000;
+            border-radius: 18px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .main .box:nth-child(13):hover::after{
+            content: "庞磊";
+            color: #fff;
+            font-size: 24px;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+
+        .main .box:nth-child(even):hover{
+            transform: rotate(5deg) scale(1.08);
+            border-radius: 50%;
+            box-shadow: 0 0 0 6px #ffd54f, 0 14px 28px rgba(0, 0, 0, 0.3);
+        }
+
+        .main .box:nth-child(8):hover{
+            transform: translateX(150px) rotate(5deg) scale(1.08);
+        }
+
+        .main .box:nth-child(10):hover{
+            transform: skewX(-45deg) rotate(5deg) scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+        <div class="box">11</div>
+        <div class="box">12</div>
+        <div class="box">13</div>
+
+    </div>
+</body>
+</html>
