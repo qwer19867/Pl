@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+姓名：庞磊
+日期：2026-10-22
+功能：演示JavaScript基本的6种数据类型
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-2 JavaScript基本数据类型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .pl-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pl-title {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .pl-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: transform 0.2s;
+        }
+
+        .pl-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .pl-type-label {
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        .pl-type-string .pl-type-label { color: #e74c3c; }
+        .pl-type-number .pl-type-label { color: #3498db; }
+        .pl-type-boolean .pl-type-label { color: #2ecc71; }
+        .pl-type-null .pl-type-label { color: #95a5a6; }
+        .pl-type-undefined .pl-type-label { color: #e67e22; }
+        .pl-type-symbol .pl-type-label { color: #9b59b6; }
+
+        .pl-type-desc {
+            flex: 1;
+            color: #555;
+            font-size: 14px;
+            min-width: 200px;
+        }
+
+        .pl-type-value {
+            background: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .pl-btn-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .pl-btn {
+            background: #fff;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .pl-btn:hover {
+            background: #667eea;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .pl-output {
+            margin-top: 20px;
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            display: none;
+        }
+
+        .pl-output .pl-keyword { color: #ff79c6; }
+        .pl-output .pl-string { color: #f1fa8c; }
+        .pl-output .pl-number { color: #bd93f9; }
+        .pl-output .pl-comment { color: #6272a4; }
+    </style>
+</head>
+<body>
+    <div class="pl-container">
+        <h1 class="pl-title">JavaScript 基本的 6 种数据类型</h1>
+
+        <div class="pl-card pl-type-string">
+            <span class="pl-type-label">String</span>
+            <span class="pl-type-desc">字符串类型，用引号包裹的文本</span>
+            <span class="pl-type-value">"你好，庞磊"</span>
+        </div>
+
+        <div class="pl-card pl-type-number">
+            <span class="pl-type-label">Number</span>
+            <span class="pl-type-desc">数字类型，包括整数和浮点数</span>
+            <span class="pl-type-value">18</span>
+        </div>
+
+        <div class="pl-card pl-type-boolean">
+            <span class="pl-type-label">Boolean</span>
+            <span class="pl-type-desc">布尔类型，只有 true 或 false</span>
+            <span class="pl-type-value">true</span>
+        </div>
+
+        <div class="pl-card pl-type-null">
+            <span class="pl-type-label">Null</span>
+            <span class="pl-type-desc">空值，表示变量值为空</span>
+            <span class="pl-type-value">null</span>
+        </div>
+
+        <div class="pl-card pl-type-undefined">
+            <span class="pl-type-label">Undefined</span>
+            <span class="pl-type-desc">未定义，变量已声明但未赋值</span>
+            <span class="pl-type-value">undefined</span>
+        </div>
+
+        <div class="pl-card pl-type-symbol">
+            <span class="pl-type-label">Symbol</span>
+            <span class="pl-type-desc">符号类型，ES6新增，表示唯一值</span>
+            <span class="pl-type-value">Symbol()</span>
+        </div>
+
+        <div class="pl-btn-group">
+            <button class="pl-btn" onclick="plShowTypes()">查看控制台输出</button>
+        </div>
+
+        <div class="pl-output" id="plOutput"></div>
+    </div>
+
+    <script>
+        // 1. String 字符串类型
+        var plStr = "你好，庞磊";
+
+        // 2. Number 数字类型
+        var plNum = 18;
+        var plFloat = 3.14;
+
+        // 3. Boolean 布尔类型
+        var plBool = true;
+
+        // 4. Null 空值
+        var plNull = null;
+
+        // 5. Undefined 未定义
+        var plUndefined;
+
+        // 6. Symbol 符号类型（ES6）
+        var plSym = Symbol("id");
+
+        function plShowTypes() {
+            var plOutput = document.getElementById("plOutput");
+            plOutput.style.display = "block";
+            plOutput.innerHTML =
+                '<span class="pl-comment">// 1. String 字符串</span><br>' +
+                '<span class="pl-keyword">var</span> plStr = <span class="pl-string">"你好，庞磊"</span>; ' +
+                '<span class="pl-comment">// typeof: ' + typeof plStr + '</span><br><br>' +
+
+                '<span class="pl-comment">// 2. Number 数字</span><br>' +
+                '<span class="pl-keyword">var</span> plNum = <span class="pl-number">18</span>; ' +
+                '<span class="pl-comment">// typeof: ' + typeof plNum + '</span><br><br>' +
+
+                '<span class="pl-comment">// 3. Boolean 布尔</span><br>' +
+                '<span class="pl-keyword">var</span> plBool = <span class="pl-keyword">true</span>; ' +
+                '<span class="pl-comment">// typeof: ' + typeof plBool + '</span><br><br>' +
+
+                '<span class="pl-comment">// 4. Null 空值</span><br>' +
+                '<span class="pl-keyword">var</span> plNull = <span class="pl-keyword">null</span>; ' +
+                '<span class="pl-comment">// typeof: ' + typeof plNull + '</span><br><br>' +
+
+                '<span class="pl-comment">// 5. Undefined 未定义</span><br>' +
+                '<span class="pl-keyword">var</span> plUndefined; ' +
+                '<span class="pl-comment">// typeof: ' + typeof plUndefined + '</span><br><br>' +
+
+                '<span class="pl-comment">// 6. Symbol 符号</span><br>' +
+                '<span class="pl-keyword">var</span> plSym = <span class="pl-keyword">Symbol</span>(<span class="pl-string">"id"</span>); ' +
+                '<span class="pl-comment">// typeof: ' + typeof plSym + '</span>';
+
+            console.log("1. String:", plStr, typeof plStr);
+            console.log("2. Number:", plNum, typeof plNum);
+            console.log("3. Boolean:", plBool, typeof plBool);
+            console.log("4. Null:", plNull, typeof plNull);
+            console.log("5. Undefined:", plUndefined, typeof plUndefined);
+            console.log("6. Symbol:", plSym.toString(), typeof plSym);
+        }
+    </script>
+</body>
+</html>

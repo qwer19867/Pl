@@ -1,0 +1,176 @@
+<!--
+姓名：庞磊
+建立时间：2026-10-26 14:47:43
+使用的大模型：GLM-5.3-Flash
+功能：展示JavaScript程序结构——循环（for、while）与条件（if-else、switch）
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript程序结构：循环与条件</title>
+  <style>
+    .pl-body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .pl-main-title {
+      text-align: center;
+      color: #333;
+    }
+
+    .pl-tip {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .pl-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pl-card {
+      flex: 1 1 460px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .pl-card-title {
+      margin: 0 0 10px;
+      color: #4a90d9;
+      font-size: 18px;
+      border-bottom: 2px solid #4a90d9;
+      padding-bottom: 6px;
+    }
+
+    .pl-output {
+      background-color: #282c34;
+      color: #98c379;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      border-radius: 6px;
+      padding: 10px;
+      min-height: 60px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .pl-code-desc {
+      color: #666;
+      font-size: 13px;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body class="pl-body">
+  <h1 class="pl-main-title">JavaScript 程序结构演示</h1>
+  <p class="pl-tip">循环结构：for、while、do-while；条件结构：if-else、switch</p>
+
+  <div class="pl-container">
+    <div class="pl-card">
+      <h2 class="pl-card-title">1. for 循环</h2>
+      <p class="pl-code-desc">使用 for 循环输出 1~5 的平方</p>
+      <div class="pl-output" id="pl-for-output"></div>
+    </div>
+
+    <div class="pl-card">
+      <h2 class="pl-card-title">2. while 循环</h2>
+      <p class="pl-code-desc">使用 while 循环计算 1~10 的累加和</p>
+      <div class="pl-output" id="pl-while-output"></div>
+    </div>
+
+    <div class="pl-card">
+      <h2 class="pl-card-title">3. do-while 循环</h2>
+      <p class="pl-code-desc">使用 do-while 循环输出 5、4、3、2、1（至少执行一次）</p>
+      <div class="pl-output" id="pl-dowhile-output"></div>
+    </div>
+
+    <div class="pl-card">
+      <h2 class="pl-card-title">4. if-else 条件</h2>
+      <p class="pl-code-desc">遍历 1~15，用 if-else 判断奇数、偶数</p>
+      <div class="pl-output" id="pl-if-output"></div>
+    </div>
+
+    <div class="pl-card">
+      <h2 class="pl-card-title">5. switch 条件</h2>
+      <p class="pl-code-desc">用 for 循环配合 switch，输出每人的成绩等级（A/B/C/D）</p>
+      <div class="pl-output" id="pl-switch-output"></div>
+    </div>
+  </div>
+
+  <script>
+    // 工具函数：向指定容器追加一行输出
+    function plAppendLine(plId, plText) {
+      var plBox = document.getElementById(plId);
+      plBox.textContent += plText + '\n';
+    }
+
+    // 1. for 循环：输出 1~5 的平方
+    for (var plI = 1; plI <= 5; plI++) {
+      plAppendLine('pl-for-output', plI + ' 的平方 = ' + (plI * plI));
+    }
+
+    // 2. while 循环：计算 1~10 的累加和
+    var plSum = 0;
+    var plJ = 1;
+    var plSteps = '';
+    while (plJ <= 10) {
+      plSum += plJ;
+      plJ++;
+    }
+    plSteps = '1+2+3+...+10 = ' + plSum;
+    plAppendLine('pl-while-output', plSteps);
+
+    // 3. do-while 循环：倒序输出 5~1（循环体至少执行一次）
+    var plK = 5;
+    do {
+      plAppendLine('pl-dowhile-output', '当前数字：' + plK);
+      plK--;
+    } while (plK >= 1);
+    plAppendLine('pl-dowhile-output', '循环结束');
+
+    // 4. if-else 条件：判断 1~15 中的奇偶数
+    for (var plM = 1; plM <= 15; plM++) {
+      if (plM % 2 === 0) {
+        plAppendLine('pl-if-output', plM + ' 是偶数');
+      } else if (plM % 2 !== 0) {
+        plAppendLine('pl-if-output', plM + ' 是奇数');
+      }
+    }
+
+    // 5. switch 条件：根据分数输出等级
+    var plScores = [95, 82, 74, 61];
+    var plNames = ['张三', '李四', '王五', '赵六'];
+    for (var plN = 0; plN < plScores.length; plN++) {
+      var plLevel;
+      switch (Math.floor(plScores[plN] / 10)) {
+        case 9:
+        case 10:
+          plLevel = 'A（优秀）';
+          break;
+        case 8:
+          plLevel = 'B（良好）';
+          break;
+        case 7:
+          plLevel = 'C（中等）';
+          break;
+        default:
+          plLevel = 'D（不及格）';
+      }
+      plAppendLine('pl-switch-output', plNames[plN] + ' 的成绩 ' + plScores[plN] + ' 分，等级：' + plLevel);
+    }
+  </script>
+</body>
+</html>

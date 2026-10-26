@@ -1,0 +1,94 @@
+<!--
+姓名：庞磊
+日期：2026-10-26
+功能：拍七游戏——生成100个盒子，符合7的规则（7的倍数、含数字7）的盒子显示为空，其余显示数字
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拍七游戏</title>
+  <style>
+    .pl-body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .pl-main-title {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .pl-tip {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .pl-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 960px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .pl-box {
+      width: 70px;
+      height: 70px;
+      border: 2px solid #4a90d9;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      background-color: #ffffff;
+      box-sizing: border-box;
+    }
+
+    /* 满足7的规则的空盒子样式 */
+    .pl-box-empty {
+      border: 2px dashed #d94a4a;
+      background-color: #fdeeee;
+      color: transparent;
+    }
+  </style>
+</head>
+<body class="pl-body">
+  <h1 class="pl-main-title">拍七游戏（1~100）</h1>
+  <p class="pl-tip">符合7的规则（7的倍数、个位为7、十位为7）的盒子为空，其余显示数字</p>
+  <div class="pl-container" id="pl-box-container"></div>
+
+  <script>
+    // 判断数字是否满足7的规则：7的倍数、个位为7、十位为7
+    function plIsSevenRelated(plNum) {
+      var plIsMultiple = plNum % 7 === 0;               // 7的倍数
+      var plUnitsDigit = plNum % 10 === 7;              // 个位数为7
+      var plTensDigit = Math.floor(plNum / 10) === 7;   // 十位数为7（70~79）
+      return plIsMultiple || plUnitsDigit || plTensDigit;
+    }
+
+    // 生成100个盒子
+    var plContainer = document.getElementById('pl-box-container');
+    var plHtml = '';
+    for (var plI = 1; plI <= 100; plI++) {
+      if (plIsSevenRelated(plI)) {
+        // 满足要求：显示空盒子
+        plHtml += '<div class="pl-box pl-box-empty">' + plI + '</div>';
+      } else {
+        // 不满足要求：显示数字
+        plHtml += '<div class="pl-box">' + plI + '</div>';
+      }
+    }
+    plContainer.innerHTML = plHtml;
+  </script>
+</body>
+</html>
